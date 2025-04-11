@@ -1,7 +1,12 @@
 import { RouteProvider } from './providers';
+import { StoreProvider } from './providers/storeProvider';
 
 export const App = () => {
-  return <RouteProvider />;
+  return (
+    <StoreProvider>
+      <RouteProvider />
+    </StoreProvider>
+  );
 };
 
 export default App;
