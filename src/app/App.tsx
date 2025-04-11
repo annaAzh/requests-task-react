@@ -1,5 +1,7 @@
+import { RouteProvider } from './providers';
+
 export const App = () => {
-  return <div>Request task</div>;
+  return <RouteProvider />;
 };
 
 export default App;
