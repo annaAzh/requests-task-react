@@ -1,3 +1,10 @@
+import { RequestForm } from '@/features/createRequest';
+
 export const RequestNewPage = () => {
-  return <div>Request form </div>;
+  return (
+    <>
+      <h1 className="mb-4 text-2xl">Новая заявка</h1>
+      <RequestForm />
+    </>
+  );
 };
