@@ -1,0 +1,23 @@
+@import 'tailwindcss';
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100vh;
+}
+
+html {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
