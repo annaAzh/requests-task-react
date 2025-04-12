@@ -1,29 +1,33 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Request } from './types';
+import { RequestType } from './types';
+import { getLocaleStorage, setLocaleStorage } from '@/shared/lib/utils';
 
 export interface RequestsState {
-  requests: Request[];
+  requests: RequestType[];
 }
 
 const initialState: RequestsState = {
-  requests: [],
+  requests: getLocaleStorage<RequestType>('REQUESTS_AZH'),
 };
 
 export const requestsSlice = createSlice({
   name: 'requests',
   initialState,
   reducers: {
-    addRequest: (state, action: PayloadAction<Request>) => {
+    addRequest: (state, action: PayloadAction<RequestType>) => {
       state.requests.push(action.payload);
+      setLocaleStorage('REQUESTS_AZH', state.requests);
     },
-    updateRequest: (state, action: PayloadAction<Request>) => {
+    updateRequest: (state, action: PayloadAction<RequestType>) => {
       state.requests = state.requests.map((request) =>
         request.id === action.payload.id ? { ...request, ...action.payload } : request,
       );
+      setLocaleStorage('REQUESTS_AZH', state.requests);
     },
-    deleteRequest: (state, action: PayloadAction<{ id: number }>) => {
-      state.requests = state.requests.filter((request) => request.id !== action.payload.id);
+    deleteRequest: (state, action: PayloadAction<number>) => {
+      state.requests = state.requests.filter((request) => request.id !== action.payload);
+      setLocaleStorage('REQUESTS_AZH', state.requests);
     },
   },
 });

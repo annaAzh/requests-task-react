@@ -4,17 +4,12 @@ import { Link } from 'react-router-dom';
 const navLinks = [
   {
     id: 1,
-    title: 'Список заявок',
+    title: 'Страница заявок',
     path: Paths.REQUESTS,
   },
   {
     id: 2,
-    title: 'Страница заявки',
-    path: Paths.REQUEST,
-  },
-  {
-    id: 3,
-    title: 'Создание заявки',
+    title: 'Страница формы заявки',
     path: Paths.REQUESTS_NEW,
   },
 ];
@@ -22,7 +17,7 @@ const navLinks = [
 export const Header = () => {
   return (
     <nav className="flex bg-slate-500 shadow-2xl justify-center py-4">
-      <ul className="flex gap-x-6 justify-between items-center">
+      <ul className="flex gap-x-10 justify-between items-center">
         {navLinks.map((link) => {
           return (
             <li

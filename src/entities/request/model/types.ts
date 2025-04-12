@@ -1,7 +1,9 @@
-export interface Request {
+export type ISODate = string;
+
+export interface RequestType {
   id: number;
   title: string;
   description: string;
   category: string;
-  dateTime: Date;
+  created: ISODate;
 }
