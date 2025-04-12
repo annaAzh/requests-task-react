@@ -8,13 +8,8 @@ import { Layout } from '@/pages/layout';
 
 const router = createBrowserRouter([
   {
-    path: Paths.HOME,
     element: <Layout />,
     children: [
-      {
-        path: Paths.HOME,
-        element: <RequestsPage />,
-      },
       {
         path: Paths.REQUESTS,
         element: <RequestsPage />,
