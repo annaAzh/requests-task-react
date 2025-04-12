@@ -12,7 +12,7 @@ interface Props extends React.ComponentProps<'select'> {
   required?: boolean;
 }
 
-export const FormSelect: FC<Props> = ({ id, label, errors, options, required, className, ...props }) => {
+export const FormSelect: FC<Props> = ({ id, label, errors, options, required, className = '', ...props }) => {
   return (
     <>
       {label && (
@@ -20,10 +20,14 @@ export const FormSelect: FC<Props> = ({ id, label, errors, options, required, cl
           {label} {required && <RequiredSymbol />}
         </label>
       )}
-      <select className={`py-2 px-4 border-[1px] border-slate-300 rounded-xl outline-0 ${className}`} {...props}>
+
+      <select
+        className={`py-2 px-4 border-[1px] border-slate-300 rounded-xl outline-0 relative cursor-pointer ${className}`}
+        {...props}
+      >
         {options?.map((option) => {
           return (
-            <option key={option.id} value={option.title}>
+            <option key={option.id} value={option.title} className="">
               {option.title}
             </option>
           );

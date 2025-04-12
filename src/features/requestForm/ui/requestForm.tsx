@@ -1,6 +1,8 @@
+import { FC } from 'react';
 import { Button } from '@/shared/components';
 import { FormInput, FormSelect, FormTextarea } from './components';
 import { useRequestForm } from '../model/hooks/useRequestForm';
+import { RequestType } from '@/entities/request';
 
 const options = [
   {
@@ -17,11 +19,18 @@ const options = [
   },
 ];
 
-export const RequestForm = () => {
-  const { formValues, errors, handleChange, handleSubmitForm } = useRequestForm(options[0].title);
+interface Props {
+  className?: string;
+  variant?: 'create' | 'edit';
+  defaultValues?: RequestType;
+}
+
+export const RequestForm: FC<Props> = ({ className, variant, defaultValues }) => {
+  const defaultCategory = options[0].title;
+  const { formValues, errors, handleChange, handleSubmitForm } = useRequestForm(defaultCategory, defaultValues);
 
   return (
-    <form onSubmit={(e) => handleSubmitForm(e)} className="flex flex-col gap-2 max-w-[400px] w-full">
+    <form onSubmit={(e) => handleSubmitForm(e)} className={`flex flex-col gap-2 max-w-[400px] w-full ${className}`}>
       <FormInput
         value={formValues.title}
         onChange={handleChange}
@@ -54,7 +63,7 @@ export const RequestForm = () => {
         errors={errors}
       />
       <Button type="submit" className="text-lg w-full">
-        Создать заявку
+        {variant === 'create' ? 'Создать заявку' : 'Сохранить изменения'}
       </Button>
     </form>
   );

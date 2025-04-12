@@ -1,14 +1,19 @@
-import { Paths } from '@/shared/types';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks';
+import { Paths } from '@/shared/types';
+import { addRequest, getLastId, RequestType, updateRequest } from '@/entities/request';
 
-export const useRequestForm = (defaultCategory: string) => {
+export const useRequestForm = (defaultCategory: string, defaultValues?: RequestType) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const lastId = useAppSelector(getLastId);
+
   const [errors, setErrors] = useState<Record<string, string[] | undefined>>({});
   const [formValues, setFormValues] = useState({
-    title: '',
-    description: '',
-    category: defaultCategory,
+    title: defaultValues?.title || '',
+    description: defaultValues?.description || '',
+    category: defaultValues?.category || defaultCategory,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -31,6 +36,13 @@ export const useRequestForm = (defaultCategory: string) => {
       return;
     }
 
+    if (defaultValues?.id) {
+      const requestObj = { ...defaultValues, ...formValues };
+      dispatch(updateRequest(requestObj));
+    } else {
+      const requestObj = { ...formValues, created: new Date(Date.now()).toString(), id: lastId + 1 };
+      dispatch(addRequest(requestObj));
+    }
     navigate(Paths.REQUESTS);
   };
 

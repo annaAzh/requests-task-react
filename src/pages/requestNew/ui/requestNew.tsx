@@ -1,4 +1,4 @@
-import { RequestForm } from '@/features/createRequest';
+import { RequestForm } from '@/features/requestForm';
 
 export const RequestNewPage = () => {
   return (
