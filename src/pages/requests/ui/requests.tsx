@@ -1,9 +1,8 @@
-import { getRequests } from '@/entities/request';
-import { RequestCard } from '@/entities/request/ui/requestCard';
+import { useNavigate } from 'react-router-dom';
+import { getRequests, RequestCard } from '@/entities/request';
 import { Button } from '@/shared/components';
 import { useAppSelector } from '@/shared/lib/hooks';
 import { Paths } from '@/shared/types';
-import { useNavigate } from 'react-router-dom';
 
 export const RequestsPage = () => {
   const navigate = useNavigate();

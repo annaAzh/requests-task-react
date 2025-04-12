@@ -1,15 +1,15 @@
-import { getRequestById } from '@/entities/request/model/selectors';
+import { useParams } from 'react-router-dom';
+import { getRequestById } from '@/entities/request';
 import { DeleteRequestButton } from '@/features/deleteRequest';
-import { ModalContent } from '@/features/editRequest/ui/modalContent';
+import { ModalContent } from '@/features/editRequest';
 import { ModalWindow } from '@/shared/components';
 import { useAppSelector } from '@/shared/lib/hooks';
-import { useParams } from 'react-router-dom';
 
 export const RequestPage = () => {
   const params = useParams<{ id: string }>();
   const id = Number(params.id);
 
-  const request = useAppSelector((state) => getRequestById(state, id));
+  const request = useAppSelector(getRequestById(id));
 
   if (!request) {
     return <div className="text-xl">Заявка с id {id} не найдена</div>;

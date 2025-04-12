@@ -20,10 +20,11 @@ export const requestsSlice = createSlice({
       setLocaleStorage('REQUESTS_AZH', state.requests);
     },
     updateRequest: (state, action: PayloadAction<RequestType>) => {
-      state.requests = state.requests.map((request) =>
-        request.id === action.payload.id ? { ...request, ...action.payload } : request,
-      );
-      setLocaleStorage('REQUESTS_AZH', state.requests);
+      const id = state.requests.findIndex((request) => request.id === action.payload.id);
+      if (id !== -1) {
+        state.requests[id] = action.payload;
+        setLocaleStorage('REQUESTS_AZH', state.requests);
+      }
     },
     deleteRequest: (state, action: PayloadAction<number>) => {
       state.requests = state.requests.filter((request) => request.id !== action.payload);

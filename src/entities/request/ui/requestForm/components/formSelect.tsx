@@ -1,18 +1,18 @@
 import { FC } from 'react';
-import { Options } from '../../model/types/types';
 import { RequiredSymbol } from './requiredSymbol';
 import { Errors } from './formErrors';
+import { Options } from '../../../model/types';
 
 interface Props extends React.ComponentProps<'select'> {
   id?: string;
   options?: Options[];
   label?: string;
-  errors?: Record<string, string[] | undefined>;
+  error?: string;
   className?: string;
   required?: boolean;
 }
 
-export const FormSelect: FC<Props> = ({ id, label, errors, options, required, className = '', ...props }) => {
+export const FormSelect: FC<Props> = ({ id, label, error, options, required, className = '', ...props }) => {
   return (
     <>
       {label && (
@@ -33,7 +33,7 @@ export const FormSelect: FC<Props> = ({ id, label, errors, options, required, cl
           );
         })}
       </select>
-      {errors && id && <Errors id={id} errors={errors} />}
+      {error && id && <Errors id={id} error={error} />}
     </>
   );
 };

@@ -10,7 +10,9 @@ export const getLastId = (state: RootState): number => {
   return requests.length > 0 ? Math.max(...requests.map((request) => request.id)) : 0;
 };
 
-export const getRequestById = (state: RootState, id: number): RequestType | undefined => {
-  const { requests } = state.requests;
-  return requests.find((request) => request.id === id);
-};
+export const getRequestById =
+  (id: number) =>
+  (state: RootState): RequestType | undefined => {
+    const { requests } = state.requests;
+    return requests.find((request) => request.id === id);
+  };

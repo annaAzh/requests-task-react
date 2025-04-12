@@ -6,12 +6,12 @@ import { Textarea } from '@/shared/components';
 interface Props extends React.ComponentProps<'textarea'> {
   id?: string;
   label?: string;
-  errors?: Record<string, string[] | undefined>;
+  error?: string;
   className?: string;
   required?: boolean;
 }
 
-export const FormTextarea: FC<Props> = ({ id, label, required, errors, className, ...props }) => {
+export const FormTextarea: FC<Props> = ({ id, label, required, error, className, ...props }) => {
   return (
     <>
       {label && (
@@ -20,7 +20,7 @@ export const FormTextarea: FC<Props> = ({ id, label, required, errors, className
         </label>
       )}
       <Textarea id={id} className={className} {...props} />
-      {errors && id && <Errors id={id} errors={errors} />}
+      {error && id && <Errors id={id} error={error} />}
     </>
   );
 };

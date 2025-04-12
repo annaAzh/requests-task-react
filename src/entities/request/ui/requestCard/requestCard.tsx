@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { RequestType } from '../model/types';
-import { formatDate } from '../lib/utils';
+import { RequestType } from '../../model/types';
+import { formatDate } from '../../lib/utils';
 
 interface Props {
   request: RequestType;

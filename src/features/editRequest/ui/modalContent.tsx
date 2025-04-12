@@ -1,6 +1,5 @@
-import { RequestType } from '@/entities/request';
-import { RequestForm } from '@/features/requestForm';
 import { FC } from 'react';
+import { RequestForm, RequestType } from '@/entities/request';
 
 interface Props {
   request: RequestType;

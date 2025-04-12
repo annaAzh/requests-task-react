@@ -7,3 +7,7 @@ export interface RequestType {
   category: string;
   created: ISODate;
 }
+export interface Options {
+  id: number;
+  title: string;
+}

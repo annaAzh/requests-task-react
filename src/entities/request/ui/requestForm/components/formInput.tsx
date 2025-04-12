@@ -6,12 +6,12 @@ import { Input } from '@/shared/components';
 interface Props extends React.ComponentProps<'input'> {
   id?: string;
   label?: string;
-  errors?: Record<string, string[] | undefined>;
+  error?: string;
   className?: string;
   required?: boolean;
 }
 
-export const FormInput: FC<Props> = ({ id, label, required, errors, className, ...props }) => {
+export const FormInput: FC<Props> = ({ id, label, required, error, className, ...props }) => {
   return (
     <>
       {label && (
@@ -20,7 +20,7 @@ export const FormInput: FC<Props> = ({ id, label, required, errors, className, .
         </label>
       )}
       <Input id={id} className={className} {...props} />
-      {errors && id && <Errors id={id} errors={errors} />}
+      {error && id && <Errors id={id} error={error} />}
     </>
   );
 };
